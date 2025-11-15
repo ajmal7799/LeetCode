@@ -12,7 +12,6 @@ for(let i=0; i<nums.length; i++) {
         sa.push(count)
         count = 0
     }
-    
 }
 sa.push(count)
 return Math.max(...sa)
