@@ -5,25 +5,23 @@
  * @return {number[]}
  */
 var twoOutOfThree = function(nums1, nums2, nums3) {
-    let result = []
-
-for(let i=0; i<nums1.length; i++) {
-    for(let j=0; j<nums2.length; j++) {
-        if(nums1[i] == nums2[j] && !result.includes(nums2[j])) {
-            
-                result.push(nums2[j])
-            
-        }
-        for(let k=0; k<nums3.length; k++) {
-            if(nums1[i] == nums3[k] && !result.includes(nums3[k])) {
-                result.push(nums3[k])
-            }
-            if(nums2[j]==nums3[k] && !result.includes(nums3[k])) {
-                result.push(nums3[k])
-            }
+    const array = [...new Set(nums1), ...new Set(nums2), ...new Set(nums3)]
+    const map = {}
+    const result = []
+    
+    for(const number of array) {
+        if(map[number]) {
+            map[number] += 1
+        } else {
+            map[number] = 1
         }
     }
     
-}
-return result 
+    for(const key in map) {
+        if(map[key] >= 2) {
+            result.push(Number(key))
+        }
+    }
+    
+  return result  
 };
