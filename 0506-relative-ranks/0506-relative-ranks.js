@@ -3,29 +3,20 @@
  * @return {string[]}
  */
 var findRelativeRanks = function(score) {
-    let a = [...score]
- 
-let sort = a.sort((a,b)=> b-a)
-console.log(sort)
-let result = []
-"Gold Medal"
-"Silver Medal"
-"Bronze Medal"
+    let sort = [...score].sort((a,b)=> b-a)
+let rankMap = new Map()
 
+for(let i=0; i<sort.length; i++) {
+    if(i==0) rankMap.set(sort[i],"Gold Medal")
+    else if(i==1) rankMap.set(sort[i],"Silver Medal")
+    else if(i==2) rankMap.set(sort[i],"Bronze Medal")
+    else rankMap.set(sort[i],String(i+1))
+}
+let result = []
 
 for(let i=0; i<score.length; i++) {
-    if(score[i]==sort[0]) {
-        result.push("Gold Medal")
-    }else if(score[i]==sort[1]) {
-        result.push("Silver Medal")
-    }else if(score[i]==sort[2]) {
-        result.push("Bronze Medal")
-    }else if(score[i]==sort[3]) {
-        result.push("4")
-    }else if(score[i]==sort[4]) {
-        result.push("5")
-    }
-    
+    result.push(rankMap.get(score[i]))
 }
 return result
+
 };
